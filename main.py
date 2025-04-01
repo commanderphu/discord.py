@@ -10,9 +10,9 @@ load_dotenv()  # Lädt die Variablen aus der .env-Datei
 # Erstelle eine Discord-Client-Instanz
 # und lade die Umgebungsvariablen
 # aus der .env-Datei
-prefix = os.getenv("prefix")
+prefix = os.getenv("COMMAND_PREFIX")  # Hole den Prefix aus der Umgebungsvariable1
 if not prefix:
-    raise ValueError("prefix ist nicht in der .env-Datei definiert!")
+    raise ValueError("COMMAND_PREFIX ist nicht in der .env-Datei definiert!")
 
 class MyClient(discord.Client):  # Erbt von discord.Client
     async def on_ready(self):  # Wird aufgerufen, wenn der Bot bereit ist
@@ -38,8 +38,8 @@ intents.message_content = True  # Aktiviert die Nachrichten-Inhalte-Intents
 client = MyClient(intents=intents)  # Erstellt den Bot mit den Intents
     
     # Hole den Token aus der Umgebungsvariable
-token = os.getenv("bot_token")
+token = os.getenv("DISCORD_TOKEN")
 if not token:
-    raise ValueError("bot_token ist nicht in der .env-Datei definiert!")
+    raise ValueError("DISCORD_TOKEN ist nicht in der .env-Datei definiert!")
     
 client.run(token)  # Verwenden Sie start() statt run()
